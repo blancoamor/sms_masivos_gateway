@@ -1,0 +1,3 @@
+import gateway_config
+import res_partner
+import crm_lead
