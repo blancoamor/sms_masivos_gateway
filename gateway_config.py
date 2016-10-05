@@ -82,7 +82,7 @@ class smsmasivos_core(models.Model):
                 'origen':'',
                 }
             
-        response_string = requests.get("http://servicio.smsmasivos.com.ar/ws/SMSMasivosAPI.asmx/RecibirSMS?&usuario="+ sms_account.smsmasivos_user + '&clave='+sms_account.smsmasivos_pass +  '&solonoleidos='+'False&marcarcomoleidos=False&traeridinterno=True&origen=' )
+        response_string = requests.get("http://servicio.smsmasivos.com.ar/ws/SMSMasivosAPI.asmx/RecibirSMS?&usuario="+ sms_account.smsmasivos_user + '&clave='+sms_account.smsmasivos_pass +  '&solonoleidos='+'True&marcarcomoleidos=True&traeridinterno=True&origen=' )
 
        
         root = etree.fromstring(response_string.text.encode('utf-8'))
