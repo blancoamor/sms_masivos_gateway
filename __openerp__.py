@@ -40,5 +40,3 @@ Activo un modulo para enviar sms via Sms masivos
     ],
     'auto_install': False,
 }
-
-    

@@ -4,18 +4,19 @@ _logger = logging.getLogger(__name__)
 import requests
 from datetime import datetime
 
+import re
 
 class crm_lead(models.Model):
 
     _inherit = "crm.lead"
-    
-    mobile_e164 = fields.Char(string="Mobile e164", store=False, compute='_partner_get_phone')
 
 
-    def _partner_get_phone(self):
+    @api.one
+    @api.depends('partner_id', 'phone')
+    def _lead_get_phone(self):
 
-        if self.partnet_id.mobile:
-            phone=self.clean_mobile(self.partnet_id.mobile)
+        if self.partner_id.mobile:
+            phone=self.clean_mobile(self.partner_id.mobile)
             if phone : 
                 self.mobile_e164 =  phone
                 return 
@@ -25,6 +26,9 @@ class crm_lead(models.Model):
             if phone : 
                 self.mobile_e164 = phone 
                 return 
+
+    mobile_e164 = fields.Char(string="Mobile e164", store=False, compute='_lead_get_phone')
+
 
 
     def clean_mobile(self,phone):

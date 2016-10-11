@@ -16,5 +16,64 @@
       	      </xpath>
       	  </field>
       </record>
+
+
+
+
+  
+
+            <record id="esms_mass_sms_wizard_form" model="ir.ui.view">
+            <field name="name">esms.mass.sms.wizard.form</field>
+            <field name="model">esms.mass.sms.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <sheet>
+                        <group col="2">
+                            <field name="phone_list"/>
+                            <field name="esms_mass_sms" value="active_id"/>
+
+                        </group>
+                        <footer >
+                            <button string="Buscar telefonos" type="object" name="by_phone"/>
+                            <button string="Buscar DNI" type="object" name="by_dni"/>
+                        </footer>
+                            
+                    </sheet>
+                </form>
+            </field>
+        </record>
+  
+
+        <record model="ir.actions.act_window" id="wiz_esms_mass_sms_wizard">
+            <field name="name">Agregar masivo</field>
+            <field name="res_model">esms.mass.sms.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+   
+      <record model="ir.ui.view" id="esms_mass_sms_form_view_inherit">
+          <field name="name">esms mass sms view</field>
+          <field name="model">esms.mass.sms</field>
+          <field name="inherit_id" ref="entity_sms.esms_mass_sms_form_view"/>
+          <field name="arch" type="xml">
+
+              <xpath expr="//button[@name='send_mass_sms']" position="after">
+                        <button string="Agregar masivo" type="action" name="%(sms_masivos_gateway.wiz_esms_mass_sms_wizard)d" attrs="{'invisible': [('mass_sms_state', '!=', 'draft')]} "  context="{'esms_mass_sms': active_id}" />
+
+
+              </xpath>
+          </field>
+      </record>
+
+
+
+
+
+
   </data>
 </openerp>

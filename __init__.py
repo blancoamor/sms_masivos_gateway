@@ -1,3 +1,4 @@
 import gateway_config
 import res_partner
 import crm_lead
+import esms_mass_sms
