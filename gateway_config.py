@@ -33,7 +33,7 @@ class smsmasivos_core(models.Model):
         
         sms_uuid = uuid.uuid4().urn
 
-        smsgateway_url = "http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&usuario="+sms_account.smsmasivos_user+"&clave="+sms_account.smsmasivos_pass+"&tos="+to_number+"&texto=" + sms_content.encode("ISO-8859-1", 'ignore')+'&IDINTERNO='+ sms_uuid[9:];
+        smsgateway_url = "http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&usuario="+sms_account.smsmasivos_user+"&clave="+sms_account.smsmasivos_pass+"&tos="+to_number+"&texto=" + sms_content+'&IDINTERNO='+ sms_uuid[9:];
 
 
         response_string = requests.get(smsgateway_url)
